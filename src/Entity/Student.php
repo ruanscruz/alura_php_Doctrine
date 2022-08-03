@@ -28,8 +28,18 @@ class Student
         return $this->id;
     }
 
-    public function name(): int
+    public function name(): string
     {
         return $this->name;
     }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+
 }

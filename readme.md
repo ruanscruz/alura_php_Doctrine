@@ -7,4 +7,8 @@
 * Criamos nosso primeiro mapeamento de entidade;
 * Conhecemos e aprendemos a usar a CLI do Doctrine;
 * Inserimos um registro usando o Entity Manager.
+## 03.Finalizando CRUD
+* Aprendemos a fazer consultas e trabalhar com repositórios;
+* Entendemos como realizar alterações em registros;
+* Aprendemos a remover registros usando o Entity Manager.
 
