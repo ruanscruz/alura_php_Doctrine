@@ -5,7 +5,7 @@ use Alura\Doctrine\Helper\EntityManagerCreator as EntityManagerCreatorAlias;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManager = EntityManagerCreatorAlias::createEntityManager();
-$student = $entityManager->getPartialReference(Student::class, $argv[1]);
+$student = $entityManager->find(Student::class, $argv[1]);
 
 $entityManager->remove($student);
 $entityManager->flush();

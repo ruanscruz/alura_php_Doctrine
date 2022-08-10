@@ -12,15 +12,22 @@ $studentList = $studentRepository->findAll();
 
 foreach ($studentList as $student) {
     echo "ID: {$student->id()} Name: {$student->name()}" . PHP_EOL;
+    echo "Telefones: ";
+
+    echo implode(' - ', $student->getPhones()->map(fn ($phone) => $phone->getPhone())
+        ->toArray()
+    );
+
+    echo PHP_EOL;
 }
 
-$studentById = $studentRepository->find(3);
-echo "O aluno de ID: {$studentById->id()} é o {$studentById->name()}" . PHP_EOL;
-
-$studentBy = $studentRepository->findBy(['name' => 'Bruna']);
-foreach ($studentBy as $student){
-    echo '-- BY --' . PHP_EOL;
-    echo "ID: {$student->id()} Name: {$student->name()}" . PHP_EOL;
-}
+//$studentById = $studentRepository->find(3);
+//echo "O aluno de ID: {$studentById->id()} é o {$studentById->name()}" . PHP_EOL;
+//
+//$studentBy = $studentRepository->findBy(['name' => 'Bruna']);
+//foreach ($studentBy as $student){
+//    echo '-- BY --' . PHP_EOL;
+//    echo "ID: {$student->id()} Name: {$student->name()}" . PHP_EOL;
+//}
 
 //php bin/update-student.php 3
