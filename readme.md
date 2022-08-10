@@ -17,3 +17,7 @@
 * Fizemos uso desse relacionamento em nosso código PHP;
 * Aprendemos a lidar com coleções do Doctrine;
 * Conhecemos as operações em cascata para inserir e remover registros.
+## 05.Relacionamento _ManyToMany_
+* Mapeamos uma nova entidade;
+* Aprendemos sobre um novo tipo de relacionamento;
+* Vinculamos alunos a cursos.

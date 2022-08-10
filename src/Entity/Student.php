@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity]
@@ -25,10 +26,14 @@ class Student
     #[OneToMany(targetEntity: Phone::class, mappedBy: 'student', cascade: ['persist', 'remove'])]
     public Collection $phones;
 
+    #[ManyToMany(Course::class, inversedBy: 'students')]
+    private Collection $courses;
+
     public function __construct(string $name)
     {
         $this->name = $name;
         $this->phones = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     // getters
@@ -48,6 +53,12 @@ class Student
         return $this->phones;
     }
 
+    /** @return Collection<Course> */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
     // setters
     public function setName(string $name): void
     {
@@ -60,6 +71,13 @@ class Student
         $phone->setStudent($this);
     }
 
+    public function enrollInCourse(Course $course) : void
+    {
+        if($this->courses->contains($course)) return;
 
+        $this->courses->add($course);
+        $course->addStudent($this);
+    }
 
 }
+

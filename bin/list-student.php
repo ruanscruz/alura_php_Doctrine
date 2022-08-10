@@ -12,13 +12,18 @@ $studentList = $studentRepository->findAll();
 
 foreach ($studentList as $student) {
     echo "ID: {$student->id()} Name: {$student->name()}" . PHP_EOL;
-    echo "Telefones: ";
 
-    echo implode(' - ', $student->getPhones()->map(fn ($phone) => $phone->getPhone())
-        ->toArray()
-    );
+    if($student->getPhones()->count() > 0) {
+        echo "Telefones: " . implode(' - ', $student->getPhones()->map(fn ($phone) => $phone->getPhone())
+                ->toArray()
+            ) .PHP_EOL;
+    }
 
-    echo PHP_EOL;
+    if($student->getCourses()->count() > 0) {
+        echo "Cursos: " . implode(' - ', $student->getCourses()->map(fn ($course) => $course->getName())
+                ->toArray()
+            ) .PHP_EOL;;
+    }
 }
 
 //$studentById = $studentRepository->find(3);
@@ -30,4 +35,4 @@ foreach ($studentList as $student) {
 //    echo "ID: {$student->id()} Name: {$student->name()}" . PHP_EOL;
 //}
 
-//php bin/update-student.php 3
+//php bin/list-student.php
